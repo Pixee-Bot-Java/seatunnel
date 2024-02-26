@@ -46,7 +46,7 @@ public class S3Configuration extends AbstractConfiguration {
         if (config.get(S3_BUCKET_KEY).toString().startsWith(S3A_PROTOCOL)) {
             protocol = S3A_PROTOCOL;
         }
-        String fsImpl = protocol.equals(S3A_PROTOCOL) ? HDFS_S3A_IMPL : HDFS_S3N_IMPL;
+        String fsImpl = S3A_PROTOCOL.equals(protocol) ? HDFS_S3A_IMPL : HDFS_S3N_IMPL;
         Configuration hadoopConf = new Configuration();
         hadoopConf.set(FS_DEFAULT_NAME_KEY, config.get(S3_BUCKET_KEY).toString());
         hadoopConf.set(formatKey(protocol, HDFS_IMPL_KEY), fsImpl);

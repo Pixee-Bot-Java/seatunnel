@@ -155,7 +155,7 @@ public class ClientCommandArgs extends AbstractCommandArgs {
     public static class MasterTypeValidator implements IParameterValidator {
         @Override
         public void validate(String name, String value) throws ParameterException {
-            if (name.equals("-e") || name.equals("--deploy-mode")) {
+            if ("-e".equals(name) || "--deploy-mode".equals(name)) {
                 log.warn(
                         "\n******************************************************************************************"
                                 + "\n-e and --deploy-mode deprecated in 2.3.1, please use -m and --master instead of it"

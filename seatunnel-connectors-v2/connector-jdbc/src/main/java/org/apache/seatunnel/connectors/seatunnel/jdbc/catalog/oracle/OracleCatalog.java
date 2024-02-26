@@ -159,7 +159,7 @@ public class OracleCatalog extends AbstractJdbcCatalog {
         Integer columnScale = resultSet.getObject("COLUMN_SCALE", Integer.class);
         String columnComment = resultSet.getString("COLUMN_COMMENT");
         Object defaultValue = resultSet.getObject("DEFAULT_VALUE");
-        boolean isNullable = resultSet.getString("IS_NULLABLE").equals("YES");
+        boolean isNullable = "YES".equals(resultSet.getString("IS_NULLABLE"));
 
         BasicTypeDefine typeDefine =
                 BasicTypeDefine.builder()

@@ -72,7 +72,7 @@ public class BaseFileSinkConfig implements DelimiterConfig, Serializable {
         }
         checkNotNull(path);
 
-        if (path.equals(File.separator)) {
+        if (File.separator.equals(path)) {
             this.path = "";
         }
 

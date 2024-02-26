@@ -122,7 +122,7 @@ public class MySqlCatalog extends AbstractJdbcCatalog {
         String comment = resultSet.getString("COLUMN_COMMENT");
         Object defaultValue = resultSet.getObject("COLUMN_DEFAULT");
         String isNullableStr = resultSet.getString("IS_NULLABLE");
-        boolean isNullable = isNullableStr.equals("YES");
+        boolean isNullable = "YES".equals(isNullableStr);
         // e.g. `decimal(10, 2)` is 10
         long numberPrecision = resultSet.getInt("NUMERIC_PRECISION");
         // e.g. `decimal(10, 2)` is 2

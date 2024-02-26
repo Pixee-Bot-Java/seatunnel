@@ -79,8 +79,8 @@ public class SqlServerURLParser {
                 props.entrySet().stream()
                         .filter(
                                 e ->
-                                        !e.getKey().equals("databaseName")
-                                                && !e.getKey().equals("database"))
+                                        !"databaseName".equals(e.getKey())
+                                                && !"database".equals(e.getKey()))
                         .map(e -> e.getKey() + "=" + e.getValue())
                         .collect(Collectors.joining(";", "", ""));
         suffix = Optional.ofNullable(suffix).orElse("");

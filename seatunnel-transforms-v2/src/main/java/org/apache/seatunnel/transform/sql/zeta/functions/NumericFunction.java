@@ -249,12 +249,12 @@ public class NumericFunction {
                             default:
                                 break l;
                         }
-                        v1 = t.equals("FLOAT") ? (float) d : d;
+                        v1 = "FLOAT".equals(t) ? (float) d : d;
                         break c;
                     }
                     BigDecimal bd =
                             BigDecimal.valueOf(v1.doubleValue()).setScale(scale, roundingMode);
-                    v1 = t.equals("FLOAT") ? bd.floatValue() : bd.doubleValue();
+                    v1 = "FLOAT".equals(t) ? bd.floatValue() : bd.doubleValue();
                     break;
                 }
         }

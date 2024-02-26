@@ -119,7 +119,7 @@ public class CopySQLUtil {
                 return false;
             } else {
                 Map<String, String> result = dataResp.getResult();
-                if (!result.get("state").equals("FINISHED")
+                if (!"FINISHED".equals(result.get("state"))
                         && !ResponseUtil.isCommitted(result.get("msg"))) {
                     log.error("copy into load failed, reason:{}", loadResult);
                     return false;

@@ -475,7 +475,7 @@ public class ZetaSQLFunction {
         List<Object> args = new ArrayList<>(2);
         args.add(arg);
         args.add(dataType.toUpperCase());
-        if (dataType.equalsIgnoreCase("DECIMAL")) {
+        if ("DECIMAL".equalsIgnoreCase(dataType)) {
             List<String> ps = castExpression.getType().getArgumentsStringList();
             args.add(Integer.parseInt(ps.get(0)));
             args.add(Integer.parseInt(ps.get(1)));

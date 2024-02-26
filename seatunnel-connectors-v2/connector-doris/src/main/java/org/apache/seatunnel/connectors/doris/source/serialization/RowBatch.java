@@ -100,7 +100,7 @@ public class RowBatch {
                 // Adapt unique model hidden columns
                 for (int i = 0; i < fieldVectors.size(); i++) {
                     String fieldName = fieldVectors.get(i).getField().getName();
-                    if (fieldName.equals("__DORIS_DELETE_SIGN__")) {
+                    if ("__DORIS_DELETE_SIGN__".equals(fieldName)) {
                         fieldVectors.remove(fieldVectors.get(i));
                     }
                 }

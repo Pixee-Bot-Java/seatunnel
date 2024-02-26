@@ -196,7 +196,7 @@ public class IcebergCatalog implements Catalog {
         Snapshot snapshot = catalog.loadTable(icebergTableIdentifier).currentSnapshot();
         if (snapshot != null) {
             String total = snapshot.summary().getOrDefault("total-records", null);
-            return total != null && !total.equals("0");
+            return total != null && !"0".equals(total);
         }
         return false;
     }

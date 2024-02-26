@@ -109,7 +109,7 @@ public class SFTPFileSystem extends FileSystem {
         }
 
         String user = conf.get(FS_SFTP_USER_PREFIX + host);
-        if (user == null || user.equals("")) {
+        if (user == null || "".equals(user)) {
             throw new IllegalStateException(E_USER_NULL);
         }
 

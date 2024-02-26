@@ -58,8 +58,8 @@ public class PostgresJdbcRowConverter extends AbstractJdbcRowConverter {
                     rs.getMetaData().getColumnTypeName(resultSetIndex).toUpperCase(Locale.ROOT);
             switch (seaTunnelDataType.getSqlType()) {
                 case STRING:
-                    if (metaDataColumnType.equals(PG_GEOMETRY)
-                            || metaDataColumnType.equals(PG_GEOGRAPHY)) {
+                    if (PG_GEOMETRY.equals(metaDataColumnType)
+                            || PG_GEOGRAPHY.equals(metaDataColumnType)) {
                         fields[fieldIndex] =
                                 rs.getObject(resultSetIndex) == null
                                         ? null

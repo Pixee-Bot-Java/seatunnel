@@ -118,7 +118,7 @@ public class DamengCatalog extends AbstractJdbcCatalog {
         int columnScale = resultSet.getInt("DATA_SCALE");
         String columnComment = resultSet.getString("COMMENTS");
         Object defaultValue = resultSet.getObject("DATA_DEFAULT");
-        boolean isNullable = resultSet.getString("NULLABLE").equals("Y");
+        boolean isNullable = "Y".equals(resultSet.getString("NULLABLE"));
 
         BasicTypeDefine typeDefine =
                 BasicTypeDefine.builder()

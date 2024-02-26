@@ -129,7 +129,7 @@ public class PostgresCatalog extends AbstractJdbcCatalog {
         int columnScale = resultSet.getInt("column_scale");
         String columnComment = resultSet.getString("column_comment");
         Object defaultValue = resultSet.getObject("default_value");
-        boolean isNullable = resultSet.getString("is_nullable").equals("YES");
+        boolean isNullable = "YES".equals(resultSet.getString("is_nullable"));
 
         // dealingSpecialNumeric
         if (typeName.equals(PostgresTypeConverter.PG_NUMERIC) && columnLength < 1) {
