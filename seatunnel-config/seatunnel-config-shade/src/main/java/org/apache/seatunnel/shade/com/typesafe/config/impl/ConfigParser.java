@@ -4,6 +4,8 @@
 
 package org.apache.seatunnel.shade.com.typesafe.config.impl;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.apache.seatunnel.shade.com.typesafe.config.ConfigException;
 import org.apache.seatunnel.shade.com.typesafe.config.ConfigIncludeContext;
 import org.apache.seatunnel.shade.com.typesafe.config.ConfigOrigin;
@@ -201,7 +203,7 @@ final class ConfigParser {
                 case URL:
                     URL url;
                     try {
-                        url = new URL(n.name());
+                        url = Urls.create(n.name(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
                     } catch (MalformedURLException e) {
                         throw parseError("include url() specifies an invalid URL: " + n.name(), e);
                     }
