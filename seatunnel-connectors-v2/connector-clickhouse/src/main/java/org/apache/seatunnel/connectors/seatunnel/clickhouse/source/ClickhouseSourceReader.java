@@ -17,6 +17,7 @@
 
 package org.apache.seatunnel.connectors.seatunnel.clickhouse.source;
 
+import java.security.SecureRandom;
 import org.apache.seatunnel.api.source.Collector;
 import org.apache.seatunnel.api.source.SourceReader;
 import org.apache.seatunnel.api.table.type.SeaTunnelRow;
@@ -60,7 +61,7 @@ public class ClickhouseSourceReader implements SourceReader<SeaTunnelRow, Clickh
 
     @Override
     public void open() {
-        Random random = new Random();
+        Random random = new SecureRandom();
         ClickHouseNode server = servers.get(random.nextInt(servers.size()));
         client = ClickHouseClient.newInstance(server.getProtocol());
         request = client.connect(server).format(ClickHouseFormat.RowBinaryWithNamesAndTypes);

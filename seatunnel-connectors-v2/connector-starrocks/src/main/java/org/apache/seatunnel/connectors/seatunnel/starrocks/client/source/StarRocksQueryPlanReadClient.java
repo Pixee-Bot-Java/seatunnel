@@ -17,6 +17,7 @@
 
 package org.apache.seatunnel.connectors.seatunnel.starrocks.client.source;
 
+import java.security.SecureRandom;
 import org.apache.seatunnel.api.table.type.SeaTunnelRowType;
 import org.apache.seatunnel.common.utils.JsonUtils;
 import org.apache.seatunnel.common.utils.RetryUtils;
@@ -65,7 +66,7 @@ public class StarRocksQueryPlanReadClient {
     public List<QueryPartition> findPartitions() {
         List<String> nodeUrls = sourceConfig.getNodeUrls();
         QueryPlan queryPlan =
-                getQueryPlan(genQuerySql(), nodeUrls.get(new Random().nextInt(nodeUrls.size())));
+                getQueryPlan(genQuerySql(), nodeUrls.get(new SecureRandom().nextInt(nodeUrls.size())));
         Map<String, List<Long>> be2Tablets = selectBeForTablet(queryPlan);
         return tabletsMapToPartition(
                 be2Tablets,

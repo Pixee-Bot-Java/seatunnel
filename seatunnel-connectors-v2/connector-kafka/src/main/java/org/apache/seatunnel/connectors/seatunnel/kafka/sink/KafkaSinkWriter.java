@@ -17,6 +17,7 @@
 
 package org.apache.seatunnel.connectors.seatunnel.kafka.sink;
 
+import java.security.SecureRandom;
 import org.apache.seatunnel.api.configuration.ReadonlyConfig;
 import org.apache.seatunnel.api.sink.SinkWriter;
 import org.apache.seatunnel.api.table.type.SeaTunnelRow;
@@ -84,7 +85,7 @@ public class KafkaSinkWriter implements SinkWriter<SeaTunnelRow, KafkaCommitInfo
         if (pluginConfig.get(TRANSACTION_PREFIX) != null) {
             this.transactionPrefix = pluginConfig.get(TRANSACTION_PREFIX);
         } else {
-            Random random = new Random();
+            Random random = new SecureRandom();
             this.transactionPrefix = String.format("SeaTunnel%04d", random.nextInt(PREFIX_RANGE));
         }
 
