@@ -17,6 +17,7 @@
 
 package org.apache.seatunnel.connectors.seatunnel.http.source;
 
+import io.github.pixee.security.BoundedLineReader;
 import org.apache.seatunnel.api.serialization.DeserializationSchema;
 import org.apache.seatunnel.api.source.Boundedness;
 import org.apache.seatunnel.api.source.Collector;
@@ -123,7 +124,7 @@ public class HttpSourceReader extends AbstractSingleSplitReader<SeaTunnelRow> {
                     StringReader stringReader = new StringReader(content);
                     BufferedReader bufferedReader = new BufferedReader(stringReader);
                     String lineStr;
-                    while ((lineStr = bufferedReader.readLine()) != null) {
+                    while ((lineStr = BoundedLineReader.readLine(bufferedReader, 5_000_000)) != null) {
                         collect(output, lineStr);
                     }
                 } else {
