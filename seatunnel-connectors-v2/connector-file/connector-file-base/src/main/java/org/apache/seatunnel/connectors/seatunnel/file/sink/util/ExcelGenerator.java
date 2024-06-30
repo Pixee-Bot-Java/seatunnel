@@ -17,6 +17,7 @@
 
 package org.apache.seatunnel.connectors.seatunnel.file.sink.util;
 
+import java.security.SecureRandom;
 import org.apache.seatunnel.api.table.type.SeaTunnelDataType;
 import org.apache.seatunnel.api.table.type.SeaTunnelRow;
 import org.apache.seatunnel.api.table.type.SeaTunnelRowType;
@@ -77,7 +78,7 @@ public class ExcelGenerator {
             wb = new SXSSFWorkbook();
         }
         Optional<String> sheetName = Optional.ofNullable(fileSinkConfig.getSheetName());
-        Random random = new Random();
+        Random random = new SecureRandom();
         this.st =
                 wb.createSheet(
                         sheetName.orElseGet(() -> String.format("Sheet%d", random.nextInt())));
