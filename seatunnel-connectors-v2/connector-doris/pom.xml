@@ -82,5 +82,9 @@
             <version>${project.version}</version>
             <classifier>optional</classifier>
         </dependency>
+        <dependency>
+            <groupId>io.github.pixee</groupId>
+            <artifactId>java-security-toolkit</artifactId>
+        </dependency>
     </dependencies>
 </project>
