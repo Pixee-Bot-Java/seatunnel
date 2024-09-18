@@ -18,6 +18,8 @@
 
 package org.apache.seatunnel.connectors.seatunnel.jdbc;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.apache.seatunnel.api.table.type.SeaTunnelRow;
 import org.apache.seatunnel.common.exception.SeaTunnelRuntimeException;
 
@@ -268,7 +270,7 @@ public class JdbcDmUpsetIT extends AbstractJdbcIT {
         try {
             URLClassLoader urlClassLoader =
                     new URLClassLoader(
-                            new URL[] {new URL(driverUrl())},
+                            new URL[] {Urls.create(driverUrl(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS)},
                             AbstractJdbcIT.class.getClassLoader());
             Thread.currentThread().setContextClassLoader(urlClassLoader);
             Driver driver =
