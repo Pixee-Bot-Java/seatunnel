@@ -17,6 +17,7 @@
 
 package org.apache.seatunnel.connectors.doris.rest;
 
+import io.github.pixee.security.BoundedLineReader;
 import org.apache.seatunnel.api.table.type.SeaTunnelRowType;
 import org.apache.seatunnel.connectors.doris.config.DorisConfig;
 import org.apache.seatunnel.connectors.doris.config.DorisOptions;
@@ -204,7 +205,7 @@ public class RestService implements Serializable {
                         new InputStreamReader(
                                 connection.getInputStream(), StandardCharsets.UTF_8))) {
             String line;
-            while ((line = in.readLine()) != null) {
+            while ((line = BoundedLineReader.readLine(in, 5_000_000)) != null) {
                 result.append(line);
             }
         }

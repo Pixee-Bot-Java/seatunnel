@@ -18,6 +18,7 @@
 
 package org.apache.seatunnel.e2e.connector.kafka;
 
+import io.github.pixee.security.BoundedLineReader;
 import org.apache.seatunnel.api.table.catalog.CatalogTable;
 import org.apache.seatunnel.api.table.catalog.CatalogTableUtil;
 import org.apache.seatunnel.api.table.type.BasicType;
@@ -816,7 +817,7 @@ public class KafkaFormatIT extends TestSuiteBase implements TestResource {
             if (inputStream != null) {
                 try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
                     String line;
-                    while ((line = br.readLine()) != null) {
+                    while ((line = BoundedLineReader.readLine(br, 5_000_000)) != null) {
                         ProducerRecord<String, String> record =
                                 new ProducerRecord<>(kafkaTopic, null, line);
                         producer.send(record).get();
