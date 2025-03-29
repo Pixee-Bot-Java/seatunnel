@@ -17,6 +17,8 @@
 
 package org.apache.seatunnel.connectors.seatunnel.jdbc;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.apache.seatunnel.shade.com.google.common.io.ByteStreams;
 import org.apache.seatunnel.shade.com.google.common.io.CharStreams;
 
@@ -112,7 +114,7 @@ public abstract class AbstractJdbcIT extends TestSuiteBase implements TestResour
         if (urlClassLoader == null) {
             urlClassLoader =
                     new URLClassLoader(
-                            new URL[] {new URL(driverUrl())},
+                            new URL[] {Urls.create(driverUrl(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS)},
                             AbstractJdbcIT.class.getClassLoader());
             Thread.currentThread().setContextClassLoader(urlClassLoader);
         }

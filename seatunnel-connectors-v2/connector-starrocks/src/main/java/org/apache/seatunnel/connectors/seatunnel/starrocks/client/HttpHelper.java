@@ -17,6 +17,8 @@
 
 package org.apache.seatunnel.connectors.seatunnel.starrocks.client;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.apache.seatunnel.common.utils.JsonUtils;
 import org.apache.seatunnel.connectors.seatunnel.starrocks.config.SinkConfig;
 
@@ -188,7 +190,7 @@ public class HttpHelper {
 
     public boolean tryHttpConnection(String host) {
         try {
-            URL url = new URL(host);
+            URL url = Urls.create(host, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
             HttpURLConnection co = (HttpURLConnection) url.openConnection();
             co.setConnectTimeout(DEFAULT_CONNECT_TIMEOUT);
             co.connect();
