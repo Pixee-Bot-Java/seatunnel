@@ -17,6 +17,7 @@
 
 package org.apache.seatunnel.e2e.connector.pulsar;
 
+import java.security.SecureRandom;
 import org.apache.seatunnel.shade.com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.seatunnel.shade.com.fasterxml.jackson.databind.node.ObjectNode;
 
@@ -92,7 +93,7 @@ public class PulsarSinkIT extends TestSuiteBase implements TestResource {
             PulsarClient client =
                     PulsarClient.builder().serviceUrl(pulsarContainer.getPulsarBrokerUrl()).build();
 
-            Random random = new Random();
+            Random random = new SecureRandom();
             Consumer consumer =
                     client.newConsumer()
                             .topic(TOPIC)

@@ -17,6 +17,7 @@
 
 package org.apache.seatunnel.connectors.seatunnel.common.multitablesink;
 
+import java.security.SecureRandom;
 import org.apache.seatunnel.api.sink.MultiTableResourceManager;
 import org.apache.seatunnel.api.sink.SinkWriter;
 import org.apache.seatunnel.api.sink.SupportMultiTableSinkWriter;
@@ -46,7 +47,7 @@ public class MultiTableSinkWriter
     private final Map<String, Optional<Integer>> sinkPrimaryKeys = new HashMap<>();
     private final List<Map<SinkIdentifier, SinkWriter<SeaTunnelRow, ?, ?>>> sinkWritersWithIndex;
     private final List<MultiTableWriterRunnable> runnable = new ArrayList<>();
-    private final Random random = new Random();
+    private final Random random = new SecureRandom();
     private final List<BlockingQueue<SeaTunnelRow>> blockingQueues = new ArrayList<>();
     private final ExecutorService executorService;
     private MultiTableResourceManager resourceManager;

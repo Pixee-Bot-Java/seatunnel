@@ -17,6 +17,7 @@
 
 package org.apache.seatunnel.connectors.seatunnel.cdc.mysql.testutils;
 
+import java.security.SecureRandom;
 import org.junit.jupiter.api.Assertions;
 
 import lombok.extern.slf4j.Slf4j;
@@ -75,7 +76,7 @@ public class UniqueDatabase {
         this(
                 container,
                 databaseName,
-                Integer.toUnsignedString(new Random().nextInt(), 36),
+                Integer.toUnsignedString(new SecureRandom().nextInt(), 36),
                 username,
                 password,
                 (!templateName.isEmpty() && templateName != null) ? templateName : password);

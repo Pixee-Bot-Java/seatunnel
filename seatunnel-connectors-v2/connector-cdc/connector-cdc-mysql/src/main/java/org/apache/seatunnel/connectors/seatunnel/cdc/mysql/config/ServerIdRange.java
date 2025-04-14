@@ -17,6 +17,7 @@
 
 package org.apache.seatunnel.connectors.seatunnel.cdc.mysql.config;
 
+import java.security.SecureRandom;
 import org.apache.seatunnel.connectors.cdc.base.option.JdbcSourceOptions;
 
 import java.io.Serializable;
@@ -84,7 +85,7 @@ public class ServerIdRange implements Serializable {
      */
     public static ServerIdRange from(String range) {
         if (range == null) {
-            long start = (new Random().nextInt(Integer.MAX_VALUE)) + 6500L;
+            long start = (new SecureRandom().nextInt(Integer.MAX_VALUE)) + 6500L;
             // 1024000 is the maybe max number of parallelism
             // mysql server id should be in range [1, 2^32-1]
             long end = start + 1024000L;
