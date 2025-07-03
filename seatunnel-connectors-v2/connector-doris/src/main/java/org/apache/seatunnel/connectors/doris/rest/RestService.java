@@ -17,6 +17,8 @@
 
 package org.apache.seatunnel.connectors.doris.rest;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.apache.seatunnel.api.table.type.SeaTunnelRowType;
 import org.apache.seatunnel.connectors.doris.config.DorisConfig;
 import org.apache.seatunnel.connectors.doris.config.DorisOptions;
@@ -148,7 +150,7 @@ public class RestService implements Serializable {
 
     private static String getConnectionPost(
             HttpRequestBase request, String user, String passwd, Logger logger) throws IOException {
-        URL url = new URL(request.getURI().toString());
+        URL url = Urls.create(request.getURI().toString(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setInstanceFollowRedirects(false);
         conn.setRequestMethod(request.getMethod());
@@ -173,7 +175,7 @@ public class RestService implements Serializable {
 
     private static String getConnectionGet(
             String request, String user, String passwd, Logger logger) throws IOException {
-        URL realUrl = new URL(request);
+        URL realUrl = Urls.create(request, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
         // open connection
         HttpURLConnection connection = (HttpURLConnection) realUrl.openConnection();
         String authEncoding =

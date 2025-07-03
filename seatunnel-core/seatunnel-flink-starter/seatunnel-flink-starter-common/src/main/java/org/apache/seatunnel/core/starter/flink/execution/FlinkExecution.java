@@ -17,6 +17,8 @@
 
 package org.apache.seatunnel.core.starter.flink.execution;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.apache.seatunnel.shade.com.typesafe.config.Config;
 import org.apache.seatunnel.shade.com.typesafe.config.ConfigUtil;
 import org.apache.seatunnel.shade.com.typesafe.config.ConfigValueFactory;
@@ -199,7 +201,7 @@ public class FlinkExecution implements TaskExecution {
                             .map(
                                     uri -> {
                                         try {
-                                            return new URL(uri);
+                                            return Urls.create(uri, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
                                         } catch (MalformedURLException e) {
                                             throw new RuntimeException(
                                                     "the uri of jar illegal:" + uri, e);
