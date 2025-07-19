@@ -17,6 +17,7 @@
 
 package org.apache.seatunnel.transform.sql.zeta.functions;
 
+import java.security.SecureRandom;
 import org.apache.seatunnel.common.exception.CommonErrorCodeDeprecated;
 import org.apache.seatunnel.transform.exception.TransformException;
 import org.apache.seatunnel.transform.sql.zeta.ZetaSQLFunction;
@@ -381,7 +382,7 @@ public class NumericFunction {
     }
 
     public static Double random(List<Object> args) {
-        Random random = new Random();
+        Random random = new SecureRandom();
         if (!args.isEmpty()) {
             Number v1 = (Number) args.get(0);
             if (v1 != null) {

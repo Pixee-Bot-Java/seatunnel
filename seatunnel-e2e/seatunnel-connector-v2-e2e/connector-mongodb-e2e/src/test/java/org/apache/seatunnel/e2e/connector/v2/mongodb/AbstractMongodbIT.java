@@ -17,6 +17,7 @@
 
 package org.apache.seatunnel.e2e.connector.v2.mongodb;
 
+import java.security.SecureRandom;
 import org.apache.seatunnel.e2e.common.TestResource;
 import org.apache.seatunnel.e2e.common.TestSuiteBase;
 
@@ -52,7 +53,7 @@ import static java.net.HttpURLConnection.HTTP_UNAUTHORIZED;
 @Slf4j
 public abstract class AbstractMongodbIT extends TestSuiteBase implements TestResource {
 
-    protected static final Random RANDOM = new Random();
+    protected static final Random RANDOM = new SecureRandom();
 
     protected static final List<Document> TEST_MATCH_DATASET = generateTestDataSet(5);
 

@@ -17,6 +17,7 @@
 
 package org.apache.seatunnel.core.starter.seatunnel.command;
 
+import java.security.SecureRandom;
 import org.apache.seatunnel.common.utils.DateTimeUtils;
 import org.apache.seatunnel.common.utils.StringFormatUtils;
 import org.apache.seatunnel.core.starter.command.Command;
@@ -249,7 +250,7 @@ public class ClientExecuteCommand implements Command<ClientCommandArgs> {
     }
 
     private String creatRandomClusterName(String namePrefix) {
-        Random random = new Random();
+        Random random = new SecureRandom();
         return namePrefix + "-" + random.nextInt(1000000);
     }
 
